@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-
+<p> Testing here. </p>
         <main>
           <SmurfList/>
           <AddForm/>
