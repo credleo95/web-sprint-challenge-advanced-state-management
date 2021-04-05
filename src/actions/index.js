@@ -8,13 +8,16 @@ export const ADD_SMURF= "ADD_SMURF"
 export const ADD_ERROR_VALUE= "ADD_ERROR_VALUE"
 
 
-export const addSmurf = () => {
+export const addSmurf = (newSmurf) => {
+    return(dispatch) => {
+        dispatch({type:ADD_SMURF, payload:newSmurf})
+    }
 
 }
 
 export const fetchSmurf = (dispatch) => {
 dispatch({type:START_FETCH}); 
-axios.get()
+axios.get('http://localhost:3333/smurfs')
 .then(res => { 
     console.log(res.data)
     dispatch({type:FETCH_SUCCESS, payload: res.data})
