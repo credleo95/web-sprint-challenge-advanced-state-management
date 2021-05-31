@@ -21,12 +21,16 @@ export const fetchSmurfs = () => {
     }
 }
 
-export const addSmurf = newSmurf => {
-    return {
-        type: ADD_SMURF,
-        payload: newSmurf
+export const addSmurf = (newSmurf) => (dispatch) => {
+    dispatch({type: START_SMURFS_FETCH});
+    axios.post('http://localhost:3333/smurfs', newSmurf)
+        .then(res => {
+            dispatch({type:ADD_SMURF, payload: res.data})
+        })
+        .catch(error => {
+            dispatch({type:SET_SMURFS_ERROR, payload:JSON.stringify(error) })
+        })
     }
-}
 
 export const smurfsErrorState = error => {
     return {
